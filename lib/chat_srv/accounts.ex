@@ -150,10 +150,13 @@ defmodule ChatSrv.Accounts do
     end
   end
 
-  def update_user_username(user, attrs) do
+  def update_user_username(user, password, attrs) do
     changeset =
       user
-      |> User.username_changeset(attrs)
+      |> User.username_changeset(%{username: user.username})
+      |> User.validate_current_password(password)
+      |> User.confirm_changeset()
+
 
     Ecto.Multi.new()
     |> Ecto.Multi.update(:user, changeset)

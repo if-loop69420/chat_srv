@@ -96,10 +96,6 @@ defmodule ChatSrv.Accounts.User do
     user
     |> cast(attrs, [:username])
     |> validate_username()
-    |> case do
-         %{changes: %{username: _}} = changeset -> changeset
-         %{} = changeset -> add_error(changeset, :username, "did not change")
-       end
   end
 
   @doc """

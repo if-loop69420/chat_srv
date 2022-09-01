@@ -51,10 +51,12 @@ defmodule ChatSrvWeb.UserSettingsController do
   end
 
   def update(conn, %{"action" => "update_username"} = params) do
-    %{"current_username" => username, "user" => user_params} = params
+    %{"current_password" => password,"user" => user_params} = params
     user = conn.assigns.current_user
 
-    case Accounts.update_user_username(user, username, user_params) do
+    IO.inspect(params)
+
+    case Accounts.update_user_username(user, password, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Username updated successfully")

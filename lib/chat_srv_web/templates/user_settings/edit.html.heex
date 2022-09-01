@@ -63,7 +63,11 @@
   <%= hidden_input f, :action, name: "action", value: "update_username" %>
 
   <%= label f, :username, "New Username" %>
-  <%= text_input f, :username, required: true %>
+  <%= text_input f, :username, required: true%>
+
+  <%= label f, :current_password %>
+  <%= password_input f, :current_password, required: true, name: "current_password" %>
+  <%= error_tag f, :current_password %>
 
   <div>
     <%= submit "Change Username"%>
